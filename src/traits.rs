@@ -24,5 +24,5 @@ where
     I: IntoIterator + Sized,
     I::Item: Weight + Value + Clone,
 {
-    // Default implementation is sufficient.
+    // The default implementation is sufficient here.
 } 
