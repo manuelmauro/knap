@@ -26,12 +26,11 @@ First, ensure your item type implements the `Weight` and `Value` traits from thi
 
 ```rust
 // src/main.rs or your library/binary
-use knap::{Item, KnapsackIterator, KnapsackIterableExt, Weight, Value};
+use knap::{KnapsackIterator, KnapsackIterableExt, Weight, Value};
 
 // Define your custom item or use the provided `knap::Item`
 // For demonstration, we'll use the provided `Item` struct.
 // If you have your own struct:
-/*
 #[derive(Debug, Clone)]
 struct MyCustomItem {
     name: String,
@@ -50,19 +49,18 @@ impl Value for MyCustomItem {
         self.worth
     }
 }
-*/
 
 fn main() {
     let items = vec![
-        Item { id: "item1".to_string(), weight: 10, value: 60 },
-        Item { id: "item2".to_string(), weight: 20, value: 100 },
-        Item { id: "item3".to_string(), weight: 30, value: 120 },
+        MyCustomItem { name: "item1".to_string(), cost: 10, worth: 60 },
+        MyCustomItem { name: "item2".to_string(), cost: 20, worth: 100 },
+        MyCustomItem { name: "item3".to_string(), cost: 30, worth: 120 },
     ];
     let capacity = 50;
 
     println!("Available items:");
     for item in &items {
-        println!("  ID: {}, Weight: {}, Value: {}", item.id, item.weight(), item.value());
+        println!("  Name: {}, Cost: {}, Worth: {}", item.name, item.weight(), item.value());
     }
     println!("Knapsack Capacity: {}", capacity);
 
@@ -77,7 +75,7 @@ fn main() {
     let mut total_weight = 0;
     let mut total_value = 0;
     for item in knapsack_solution {
-        println!("  Selected: ID: {}, Weight: {}, Value: {}", item.id, item.weight(), item.value());
+        println!("  Selected: Name: {}, Cost: {}, Worth: {}", item.name, item.weight(), item.value());
         total_weight += item.weight();
         total_value += item.value();
     }
@@ -86,8 +84,8 @@ fn main() {
     println!("Total value of selected items: {}", total_value);
 
     // Expected output for the above example:
-    // Item ID: item3, Weight: 30, Value: 120
-    // Item ID: item2, Weight: 20, Value: 100
+    // Name: item3, Cost: 30, Worth: 120
+    // Name: item2, Cost: 20, Worth: 100
     // Total weight: 50
     // Total value: 220
 }

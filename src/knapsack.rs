@@ -30,10 +30,6 @@ where
 
     // Computes the optimal solution using dynamic programming.
     fn compute_solution(&mut self) {
-        if self.computed {
-            return;
-        }
-
         let n = self.items.len();
         if n == 0 || self.capacity == 0 {
             self.computed = true;
@@ -73,7 +69,6 @@ where
         
         solution_items_temp.reverse();
         self.optimal_solution_items = solution_items_temp;
-        self.computed = true;
     }
 }
 
@@ -86,6 +81,7 @@ where
     fn next(&mut self) -> Option<Self::Item> {
         if !self.computed {
             self.compute_solution();
+            self.computed = true;
         }
 
         if self.current_index < self.optimal_solution_items.len() {
