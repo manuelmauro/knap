@@ -7,18 +7,12 @@ pub use item::Item;
 pub use knapsack::KnapsackIterator;
 pub use traits::KnapsackIterableExt;
 
-// The main function is removed as this is a library now.
-// The test module from the old main.rs will be placed here.
 
 #[cfg(test)]
 mod tests {
-    // Adjusted to use crate level imports for clarity, 
-    // or directly use re-exported types.
-    use crate::item::Item; 
+    use crate::item::Item;
     use crate::knapsack::KnapsackIterator;
     use crate::traits::{Weight, Value, KnapsackIterableExt};
-    // Weight and Value traits are in scope via `crate::traits` or re-exports if needed by test logic directly.
-    // Item struct implements them, so direct use in tests for Item is fine.
 
     #[test]
     fn test_case_1_basic() {
@@ -30,25 +24,16 @@ mod tests {
         ];
         let capacity1 = 7;
 
-        // println! are fine for tests, they show up with `cargo test -- --nocapture`
-        // println!("Items available (Test Case 1):");
-        // for item in &items1 {
-        //     println!("  id: {}, weight: {}, value: {}", item.id, item.weight(), item.value());
-        // }
-        // println!("Knapsack capacity: {}", capacity1);
-
         let knapsack_iter1 = items1.clone().to_knapsack_iter(capacity1);
         let mut total_weight1 = 0;
         let mut total_value1 = 0;
         let mut selected_ids1 = Vec::new();
         for item in knapsack_iter1 {
-            // println!("  id: {}, weight: {}, value: {}", item.id, item.weight(), item.value());
             total_weight1 += item.weight();
             total_value1 += item.value();
             selected_ids1.push(item.id);
         }
         println!("Total weight of selected items: {}", total_weight1);
-        // println!("Total value of selected items: {}", total_value1);
         assert_eq!(total_weight1, 7);
         assert_eq!(total_value1, 9);
         assert!(selected_ids1.contains(&"item2".to_string()));

@@ -1,6 +1,6 @@
 use crate::traits::{Value, Weight};
 
-#[derive(Debug)] // Added Debug for KnapsackIterator
+#[derive(Debug)]
 pub struct KnapsackIterator<T>
 where
     T: Weight + Value + Clone,
@@ -9,7 +9,8 @@ where
     capacity: usize,
     optimal_solution_items: Vec<T>,
     current_index: usize,
-    computed: bool, // To ensure DP is run only once
+    // Ensures DP is run only once.
+    computed: bool, 
 }
 
 impl<T> KnapsackIterator<T>
@@ -27,8 +28,7 @@ where
         }
     }
 
-    // Helper method to compute the optimal solution using dynamic programming
-    // This should remain private or crate-private if not intended for external use
+    // Computes the optimal solution using dynamic programming.
     fn compute_solution(&mut self) {
         if self.computed {
             return;

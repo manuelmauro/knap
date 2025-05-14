@@ -1,6 +1,6 @@
 use crate::traits::{Value, Weight};
 
-// Example item struct
+// Example item structure.
 #[derive(Debug, Clone)]
 pub struct Item {
     pub id: String,

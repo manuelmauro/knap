@@ -1,14 +1,14 @@
-// Trait for items that have a weight
+// Trait for item weight.
 pub trait Weight {
     fn weight(&self) -> usize;
 }
 
-// Trait for items that have a value
+// Trait for item value.
 pub trait Value {
     fn value(&self) -> usize;
 }
 
-// Extension trait to provide a convenient method for creating a KnapsackIterator
+// Extension trait for creating a KnapsackIterator.
 pub trait KnapsackIterableExt: IntoIterator + Sized
 where
     Self::Item: Weight + Value + Clone,
@@ -18,11 +18,11 @@ where
     }
 }
 
-// Implement the extension trait for all types that satisfy the bounds.
+// Implement the extension trait for types satisfying the bounds.
 impl<I> KnapsackIterableExt for I
 where
     I: IntoIterator + Sized,
     I::Item: Weight + Value + Clone,
 {
-    // The default implementation is sufficient here.
+    // Default implementation is sufficient.
 } 
