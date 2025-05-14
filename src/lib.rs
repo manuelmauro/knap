@@ -5,6 +5,7 @@ pub mod knapsack;
 pub use traits::{Value, Weight};
 pub use item::Item;
 pub use knapsack::KnapsackIterator;
+pub use traits::KnapsackIterableExt;
 
 // The main function is removed as this is a library now.
 // The test module from the old main.rs will be placed here.
@@ -15,7 +16,7 @@ mod tests {
     // or directly use re-exported types.
     use crate::item::Item; 
     use crate::knapsack::KnapsackIterator;
-    use crate::traits::{Weight, Value};
+    use crate::traits::{Weight, Value, KnapsackIterableExt};
     // Weight and Value traits are in scope via `crate::traits` or re-exports if needed by test logic directly.
     // Item struct implements them, so direct use in tests for Item is fine.
 
@@ -36,7 +37,7 @@ mod tests {
         // }
         // println!("Knapsack capacity: {}", capacity1);
 
-        let knapsack_iter1 = KnapsackIterator::new(items1.clone(), capacity1);
+        let knapsack_iter1 = items1.clone().to_knapsack_iter(capacity1);
         let mut total_weight1 = 0;
         let mut total_value1 = 0;
         let mut selected_ids1 = Vec::new();
@@ -58,14 +59,14 @@ mod tests {
     #[test]
     fn test_case_2_empty_items() {
         let empty_items: Vec<Item> = Vec::new();
-        let knapsack_iter_empty = KnapsackIterator::new(empty_items, 10);
+        let knapsack_iter_empty = empty_items.to_knapsack_iter(10);
         assert_eq!(knapsack_iter_empty.count(), 0, "Empty items should yield 0 selected items.");
     }
 
     #[test]
     fn test_case_3_zero_capacity() {
         let items_for_zero_cap = vec![Item { id: "itemA".to_string(), weight: 1, value: 10 }];
-        let knapsack_iter_zero_cap = KnapsackIterator::new(items_for_zero_cap, 0);
+        let knapsack_iter_zero_cap = items_for_zero_cap.to_knapsack_iter(0);
         assert_eq!(knapsack_iter_zero_cap.count(), 0, "Zero capacity should yield 0 selected items.");
     }
 
@@ -75,7 +76,7 @@ mod tests {
             Item { id: "heavy1".to_string(), weight: 10, value: 100 },
             Item { id: "heavy2".to_string(), weight: 12, value: 120 },
         ];
-        let knapsack_iter_heavy = KnapsackIterator::new(items_too_heavy.clone(), 5);
+        let knapsack_iter_heavy = items_too_heavy.clone().to_knapsack_iter(5);
         assert_eq!(knapsack_iter_heavy.count(), 0, "All items too heavy should yield 0 selected items.");
     }
 
@@ -87,7 +88,7 @@ mod tests {
             Item { id: "C".to_string(), weight: 30, value: 120 },
         ];
         let capacity2 = 50;
-        let knapsack_iter2 = KnapsackIterator::new(items2.clone(), capacity2);
+        let knapsack_iter2 = items2.clone().to_knapsack_iter(capacity2);
         let mut total_weight2 = 0;
         let mut total_value2 = 0;
         let mut selected_ids2 = Vec::new();
@@ -110,7 +111,7 @@ mod tests {
             Item { id: "zero_val".to_string(), weight: 2, value: 0 },
         ];
         let capacity3 = 7;
-        let knapsack_iter3 = KnapsackIterator::new(items3.clone(), capacity3);
+        let knapsack_iter3 = items3.clone().to_knapsack_iter(capacity3);
         let mut total_weight3 = 0;
         let mut total_value3 = 0;
         let mut selected_ids3 = Vec::new();
