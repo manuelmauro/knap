@@ -83,7 +83,7 @@ where
                 let ratio = if weight > 0 {
                     value as f64 / weight as f64
                 } else if value > 0 {
-                    std::f64::MAX
+                    f64::MAX
                 } else {
                     -1.0
                 };
@@ -96,7 +96,7 @@ where
             if ratio_cmp == std::cmp::Ordering::Equal {
                 // If ratios are equal (e.g., both are MAX for zero-weight items),
                 // prioritize by value for zero-weight items, or by original index for stability otherwise.
-                if a.1 == std::f64::MAX && b.1 == std::f64::MAX {
+                if a.1 == f64::MAX && b.1 == f64::MAX {
                     b.2.cmp(&a.2) // Higher value first for zero-weight items
                 } else {
                     a.0.cmp(&b.0) // Stable sort for other items with same ratio
