@@ -108,12 +108,10 @@ where
                 let value = item.value();
                 let ratio = if weight > 0 {
                     value as f64 / weight as f64
+                } else if value > 0 {
+                    std::f64::MAX
                 } else {
-                    if value > 0 {
-                        std::f64::MAX
-                    } else {
-                        0.0
-                    }
+                    0.0
                 };
                 (idx, ratio)
             })
