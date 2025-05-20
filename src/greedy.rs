@@ -34,17 +34,16 @@ where
             .map(|(idx, item)| {
                 let weight = item.weight();
                 let value = item.value();
-                let actual_value = item.value();
                 let ratio = if weight > 0 {
-                    actual_value as f64 / weight as f64
+                    value as f64 / weight as f64
                 } else {
-                    if actual_value > 0 {
+                    if value > 0 {
                         std::f64::MAX
                     } else {
                         -1.0
                     }
                 };
-                (idx, ratio, actual_value)
+                (idx, ratio, value)
             })
             .collect();
 
