@@ -1,6 +1,7 @@
+pub mod greedy;
+pub mod optimal;
 pub mod traits;
-pub mod knapsack;
 
-pub use traits::{Value, Weight};
-pub use knapsack::KnapsackIterator;
-pub use traits::KnapsackIterableExt;
+pub use greedy::GreedyKnapsackIterator;
+pub use optimal::KnapsackIterator;
+pub use traits::{KnapsackIterableExt, ToGreedyKnapsackIterator, Value, Weight};
