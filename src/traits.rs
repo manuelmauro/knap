@@ -9,7 +9,7 @@ pub trait Value {
 }
 
 // Extension trait for creating a KnapsackIterator.
-pub trait KnapsackIterableExt: IntoIterator + Sized
+pub trait ToKnapsackIterator: IntoIterator + Sized
 where
     Self::Item: Weight + Value + Clone,
 {
@@ -19,7 +19,7 @@ where
 }
 
 // Implement the extension trait for types satisfying the bounds.
-impl<I> KnapsackIterableExt for I
+impl<I> ToKnapsackIterator for I
 where
     I: IntoIterator + Sized,
     I::Item: Weight + Value + Clone,

@@ -1,4 +1,4 @@
-use knap::traits::{KnapsackIterableExt, Value, Weight};
+use knap::traits::{ToKnapsackIterator, Value, Weight};
 
 #[derive(Debug, Clone)]
 pub struct Item {

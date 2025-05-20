@@ -26,7 +26,7 @@ First, ensure your item type implements the `Weight` and `Value` traits from thi
 
 ```rust
 // src/main.rs or your library/binary
-use knap::{KnapsackIterator, KnapsackIterableExt, Weight, Value};
+use knap::{KnapsackIterator, ToKnapsackIterator, Weight, Value};
 
 // Define your custom item or use the provided `knap::Item`
 // For demonstration, we'll use the provided `Item` struct.
@@ -68,7 +68,7 @@ fn main() {
     // let knapsack_solution = KnapsackIterator::new(items.clone(), capacity);
 
     // Or, more ergonomically, using the extension trait:
-    // (Ensure KnapsackIterableExt is in scope)
+    // (Ensure ToKnapsackIterator is in scope)
     let knapsack_solution = items.to_knapsack_iter(capacity);
 
     println!("Optimal items in the knapsack:");

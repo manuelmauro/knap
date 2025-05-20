@@ -4,4 +4,4 @@ pub mod traits;
 
 pub use greedy::GreedyKnapsackIterator;
 pub use optimal::KnapsackIterator;
-pub use traits::{KnapsackIterableExt, ToGreedyKnapsackIterator, Value, Weight};
+pub use traits::{ToKnapsackIterator, ToGreedyKnapsackIterator, Value, Weight};
