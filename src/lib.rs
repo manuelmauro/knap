@@ -45,27 +45,25 @@
 //!     }
 //! }
 //!
-//! fn main() {
-//!     let items = vec![
-//!         MyItem { id: "A".to_string(), weight: 10, value: 60 },
-//!         MyItem { id: "B".to_string(), weight: 20, value: 100 },
-//!         MyItem { id: "C".to_string(), weight: 30, value: 120 },
-//!     ];
-//!     let capacity = 50;
+//! let items = vec![
+//!     MyItem { id: "A".to_string(), weight: 10, value: 60 },
+//!     MyItem { id: "B".to_string(), weight: 20, value: 100 },
+//!     MyItem { id: "C".to_string(), weight: 30, value: 120 },
+//! ];
+//! let capacity = 50;
 //!
-//!     // Using the optimal solver
-//!     println!("Optimal solution:");
-//!     let optimal_iter = KnapsackIterator::new(items.clone(), capacity);
-//!     for item in optimal_iter {
-//!         println!("- {:?} (Weight: {}, Value: {})", item.id, item.weight(), item.value());
-//!     }
+//! // Using the optimal solver
+//! println!("Optimal solution:");
+//! let optimal_iter = KnapsackIterator::new(items.clone(), capacity);
+//! for item in optimal_iter {
+//!     println!("- {:?} (Weight: {}, Value: {})", item.id, item.weight(), item.value());
+//! }
 //!
-//!     // Using the greedy solver with the extension trait
-//!     println!("\nGreedy solution:");
-//!     let greedy_iter = items.to_greedy_knapsack_iter(capacity);
-//!     for item in greedy_iter {
-//!         println!("- {:?} (Weight: {}, Value: {})", item.id, item.weight(), item.value());
-//!     }
+//! // Using the greedy solver with the extension trait
+//! println!("\nGreedy solution:");
+//! let greedy_iter = items.to_greedy_knapsack_iter(capacity);
+//! for item in greedy_iter {
+//!     println!("- {:?} (Weight: {}, Value: {})", item.id, item.weight(), item.value());
 //! }
 //! ```
 //!
