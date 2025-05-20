@@ -81,4 +81,4 @@ pub mod traits;
 
 pub use greedy::GreedyKnapsackIterator;
 pub use optimal::KnapsackIterator;
-pub use traits::{ToKnapsackIterator, ToGreedyKnapsackIterator, Value, Weight};
+pub use traits::{ToGreedyKnapsackIterator, ToKnapsackIterator, Value, Weight};
